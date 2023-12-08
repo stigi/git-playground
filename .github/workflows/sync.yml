@@ -18,6 +18,5 @@ jobs:
         # per default does a shallow checkout 1 commit deep of the current ref
         uses: actions/checkout@v4
       - name: Resetting branch to current HEAD
-        run: |
-          git push --force origin HEAD:$TARGET_BRANCH
+        run: git push --force origin HEAD:$TARGET_BRANCH
         shell: bash
