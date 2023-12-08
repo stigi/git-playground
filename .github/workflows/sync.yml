@@ -1,17 +1,23 @@
 name: Reset mirror branch to main
+
+# update `$TARGET_BRANCH` and trigger branch in `on:`
+
 on:
   push:
     branches:
       - main
+
+env:
+  TARGET_BRANCH: mirror
 
 jobs:
   reset:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        # per default does a shallow checkout 1 commit deep
+        # per default does a shallow checkout 1 commit deep of the current ref
         uses: actions/checkout@v4
-      - name: Update remote main with mirror
+      - name: Resetting branch to current HEAD
         run: |
-          git push --force origin main:mirror
+          git push --force origin HEAD:$TARGET_BRANCH
         shell: bash
