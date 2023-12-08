@@ -1,0 +1,17 @@
+name: Reset mirror branch to main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # per default does a shallow checkout 1 commit deep
+        uses: actions/checkout@v4
+      - name: Update remote main with mirror
+        run: |
+          git push --force origin main:mirror
+        shell: bash
